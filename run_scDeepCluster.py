@@ -154,8 +154,8 @@ if __name__ == "__main__":
         nmi = np.round(metrics.normalized_mutual_info_score(y, y_pred), 5)
         ari = np.round(metrics.adjusted_rand_score(y, y_pred), 5)
         print('Evaluating cells: NMI= %.4f, ARI= %.4f' % (nmi, ari))
-    final_latent_file='results/file/' + args.final_latent_file+args.data_file
-    predict_label_file='results/file/' +args.predict_label_file+args.data_file
+    final_latent_file='results/file/' +args.data_file+args.final_latent_file
+    predict_label_file='results/file/' +args.data_file+args.predict_label_file
     final_latent = model.encodeBatch(torch.tensor(adata.X, dtype=torch.float32)).cpu().numpy()
     np.savetxt(final_latent_file, final_latent, delimiter=",")
     np.savetxt(predict_label_file, y_pred, delimiter=",", fmt="%i")
